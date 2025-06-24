@@ -27,23 +27,23 @@ private:
     size_t capactiy_;
 
 public:
-    int getId() {
+    int getId() const {
         return id_;
     }
 
-    std::string getName() {
+    std::string getName() const {
         return name_;
     }
 
-    int getSpeed() {
+    int getSpeed() const {
         return speed_;
     }
 
-    size_t getMaxCrew() {
+    size_t getMaxCrew() const {
         return maxCrew_;
     }
 
-    size_t getCapacity() {
+    size_t getCapacity() const {
         return capactiy_;
     }
 
