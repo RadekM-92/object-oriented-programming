@@ -22,6 +22,7 @@
 // zmienną size_t crew_ określającą aktualną liczbę załogi na statku
 // Ship& operator+=(const int), który dodawać będzie załogę do statku
 // Ship& operator-=(const int), który będzie ją odejmował.
+
 // Zadanie 4
 // Utwórz klasę Cargo. Ma ona reprezentować 1 typ towaru na statku. Będzie ona posiadać 3 pola:
 
@@ -95,6 +96,29 @@ public:
 
     Ship& operator-=(const int b) {
         crew_ -= b;
+        return *this;
+    }
+};
+
+class Cargo {
+private:
+    std::string name_;
+    size_t amount_;
+    double basePrice_;
+
+public:
+    Cargo(std::string name, size_t amount, double basePrice)
+        : name_(name),
+          amount_(amount),
+          basePrice_(basePrice){};
+
+    Cargo& operator+=(const size_t x) {
+        amount_ += x;
+        return *this;
+    }
+
+    Cargo& operator-=(const size_t x) {
+        amount_ -= x;
         return *this;
     }
 };
