@@ -16,6 +16,24 @@
 // Trzeci przyjmujący id, speed i maxCrew (postaraj się wykorzystać drugi konstruktor przy pisaniu trzeciego - patrz Delegowanie konstruktorów)
 // Dodatkowo dodaj metodę void setName(const std::string&), która pozwoli na ustawianie nazwy statku.
 
+// Zadanie 3
+// Dodaj do klasy Ship:
+
+// zmienną size_t crew_ określającą aktualną liczbę załogi na statku
+// Ship& operator+=(const int), który dodawać będzie załogę do statku
+// Ship& operator-=(const int), który będzie ją odejmował.
+// Zadanie 4
+// Utwórz klasę Cargo. Ma ona reprezentować 1 typ towaru na statku. Będzie ona posiadać 3 pola:
+
+// name_ - nazwa towaru
+// amount_ - ilość towaru
+// basePrice_ - bazowa cena towaru
+// Następnie napisz w klasie Cargo:
+
+// Cargo& operator+=(const size_t), który będzie dodawać podaną ilość towaru
+// Cargo& operator-=(const size_t), który będzie odejmował podaną ilość towaru
+// Zastanów się także, jak będziesz przechowywać towary na statku.
+
 #include <iostream>
 
 class Ship {
@@ -25,6 +43,7 @@ private:
     int speed_;
     size_t maxCrew_;
     size_t capactiy_;
+    size_t crew_;
 
 public:
     int getId() const {
@@ -47,6 +66,10 @@ public:
         return capactiy_;
     }
 
+    size_t getCrew() const {
+        return crew_;
+    }
+
     void SetName(const std::string& s) {
         name_ = s;
     }
@@ -59,10 +82,21 @@ public:
           name_(name),
           speed_(speed),
           maxCrew_(maxCrew),
-          capactiy_(capacity){};
+          capactiy_(capacity),
+          crew_(0){};
 
     Ship(const int id, const int speed, const size_t maxCrew)
         : Ship(id, "0", speed, maxCrew, 0){};
+
+    Ship& operator+=(const int b) {
+        crew_ += b;
+        return *this;
+    }
+
+    Ship& operator-=(const int b) {
+        crew_ -= b;
+        return *this;
+    }
 };
 
 int main() {
@@ -75,9 +109,16 @@ int main() {
     std::cout << Transporter.getSpeed() << std::endl;
     std::cout << Transporter.getMaxCrew() << std::endl;
     std::cout << Transporter.getCapacity() << std::endl;
+    std::cout << Transporter.getCrew() << std::endl;
 
     Transporter.SetName("Jasiek");
     std::cout << Transporter.getName() << std::endl;
+
+    Transporter += 10;
+    std::cout << Transporter.getCrew() << std::endl;
+
+    Transporter -= 5;
+    std::cout << Transporter.getCrew() << std::endl;
 
     return 0;
 }
